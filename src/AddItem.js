@@ -16,6 +16,7 @@ const AddItem = (props) => {
           </select>
         </div>
       </form>
+      <button class="btn btn-primary mt-3" type="submit" value="Submit">Submit</button>
     </div>
   )}
 export default AddItem
