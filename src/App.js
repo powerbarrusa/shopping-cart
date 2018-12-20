@@ -13,6 +13,12 @@ class App extends Component {
     super()
   }
 
+  updateCart = (event) => {
+    this.setState({
+      newItem: event.target.value
+    })
+  }
+
   render() {
     const addItemsList = [
       { id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 },

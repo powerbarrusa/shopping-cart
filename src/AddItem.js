@@ -5,6 +5,7 @@ const AddItem = (props) => {
   return (
     <div className="container">
       <form>
+        <div id="total">Total: </div>
         <div className="collection-item">
           Quantity
           <input className="form-control" type="text" name="firstname"></input>
