@@ -1,7 +1,6 @@
 import React from 'react'
 
 const CartItems = (props) => {
-  console.log(props.list)
   return(
     <div className="container">
       <h1>Cart Items</h1>
@@ -15,8 +14,8 @@ const CartItems = (props) => {
             </div>
           </div>
           <div>
-            {props.list.map((item) => 
-              <div className="list-group-item">
+            {props.list.map((item, idx) => 
+              <div key={idx} className="list-group-item">
                 <div className="row">
                   <div className="col-md-8">{item.product.name}</div>
                   <div className="col-md-2">${item.product.priceInCents/100}</div>

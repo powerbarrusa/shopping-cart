@@ -1,23 +1,26 @@
 import React from 'react'
 
+const text = "Select Something!"
 const AddItem = (props) => {
-  console.log(props)
+  console.log("props", props)
   return (
     <div className="container">
       <form>
         <div id="total">Total: </div>
         <div className="collection-item">
           Quantity
-          <input className="form-control" type="text" name="firstname"></input>
+          <input onChange={props.quantityListener} className="form-control" type="number"></input>
           Products
-          <select className="form-control">
-          {props.itemsToAdd.map((add) =>
-            <option>{add.name}</option>
+          <select onChange={props.productListener} className="form-control" defaultValue={text}>
+            <option disabled>{text}</option>
+            {props.itemsToAdd.map((add, idx) =>
+            <option key={idx}>
+            {add.name}</option>
             )}
           </select>
         </div>
       </form>
-      <button class="btn btn-primary mt-3" type="submit" value="Submit">Submit</button>
+      <button className="btn btn-primary mt-3" type="submit" value="Submit">Submit</button>
     </div>
   )}
 export default AddItem
