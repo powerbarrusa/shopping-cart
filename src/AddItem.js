@@ -9,18 +9,18 @@ const AddItem = (props) => {
         <div id="total">Total: </div>
         <div className="collection-item">
           Quantity
-          <input onChange={props.quantityListener} className="form-control" type="number"></input>
+          <input onChange={props.quantityListener} className="form-control" placeholder="Quantity" type="number"></input>
           Products
           <select onChange={props.productListener} className="form-control" defaultValue={text}>
             <option disabled>{text}</option>
-            {props.itemsToAdd.map((add, idx) =>
+            {props.products.map((add, idx) =>
             <option key={idx}>
             {add.name}</option>
             )}
           </select>
         </div>
       </form>
-      <button className="btn btn-primary mt-3" type="submit" value="Submit">Submit</button>
+      <button onClick={props.addItem} className="btn btn-primary mt-3" type="submit" value="Submit">Submit</button>
     </div>
   )}
 export default AddItem

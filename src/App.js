@@ -12,7 +12,7 @@ class App extends Component {
   constructor(props){
     super()
     this.state = {
-      addItemsList: [
+      products: [
         { id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 },
         { id: 41, name: 'Heavy Duty Concrete Plate', priceInCents: 499 },
         { id: 42, name: 'Intelligent Paper Knife', priceInCents: 1999 },
@@ -44,9 +44,19 @@ class App extends Component {
     })
   }
 
-  newLineItem = (event) => {
+  addItem = (event) => {
     event.preventDefault()
-    
+    let newItem = {
+      product: {
+        id: this.state.cartList.length + 1,
+        name: this.state.name,
+        priceInCents: 399
+      },
+      quantity: 1
+    }
+    this.setState({
+      cartList: [...this.state.cartList, newItem]
+    })
   }
   
   render() {
@@ -61,15 +71,15 @@ class App extends Component {
       <div>
         <CartHeader />
         <CartItems
-          list={cartItemsList}
-          productToAdd={this.state.name}
+          list={this.state.cartList}
         />
         <AddItem
-          itemsToAdd={this.state.addItemsList}
+          products={this.state.products}
           quantityListener={this.quantityListener}
           productListener={this.productListener}
+          addItem={this.addItem}
         />
-        <CartFooter copyright={"2018"}/>
+        <CartFooter copyright={2018}/>
       </div>
     );
   }
