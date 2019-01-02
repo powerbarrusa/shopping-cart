@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import './App.css'
-import CartHeader from './CartHeader'
-import CartFooter from './CartFooter'
-import CartItems from './CartItems'
-import AddItem from './AddItem'
+import CartHeader from './components/CartHeader'
+import CartFooter from './components/CartFooter'
+import CartItems from './components/CartItems'
+import AddItem from './components/AddItem'
 
 
 
 class App extends Component {
 
   constructor(props){
-    super()
+    super(props)
     this.state = {
       products: [
         { id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 },
@@ -25,15 +25,23 @@ class App extends Component {
       ], 
       quantity: 0,
       name: "",
-      price: "",
+      price: 0,
+      total: 0,
       cartList: []
     }
   }
 
+  // totalCalc = (event) => {
+  //   event.preventDefault()
+  //   this.setState({
+  //     total: 0
+  //   })
+  // }
+
   quantityListener = (event) => {
     event.preventDefault()
     this.setState({
-      quantity: event.target.value
+      quantity: Number(event.target.value)
     })
   }
 
@@ -45,12 +53,16 @@ class App extends Component {
   }
 
   addItem = (event) => {
+    // console.log(this.state)
     event.preventDefault()
+    let result = this.state.products.filter(x => x.name === this.state.name)
+    console.log("e", event.target.value)
+    console.log("result", result)
     let newItem = {
       product: {
         id: this.state.cartList.length + 1,
         name: this.state.name,
-        priceInCents: 399
+        price: +result[0].priceInCents
       },
       quantity: this.state.quantity
     }
@@ -60,7 +72,6 @@ class App extends Component {
   }
   
   render() {
-    console.log("state", this.state)
     return (
       <div>
         <CartHeader />

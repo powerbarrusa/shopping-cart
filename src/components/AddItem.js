@@ -2,11 +2,10 @@ import React from 'react'
 
 const text = "Select Something!"
 const AddItem = (props) => {
-  console.log("props", props)
   return (
     <div className="container">
       <form>
-        <div id="total">Total: </div>
+        <div id="total">Total: 0</div>
         <div className="collection-item">
           Quantity
           <input onChange={props.quantityListener} className="form-control" placeholder="Quantity" type="number"></input>
@@ -20,7 +19,7 @@ const AddItem = (props) => {
           </select>
         </div>
       </form>
-      <button onClick={props.addItem} className="btn btn-primary mt-3" type="submit" value="Submit">Submit</button>
+      <button onClick={props.addItem} className="btn btn-primary mt-3" type="submit" value="">Submit</button>
     </div>
   )}
 export default AddItem
