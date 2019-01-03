@@ -5,12 +5,9 @@ import CartFooter from './components/CartFooter'
 import CartItems from './components/CartItems'
 import AddItem from './components/AddItem'
 
-
-
 class App extends Component {
-
-  constructor(props){
-    super(props)
+  constructor(){
+    super()
     this.state = {
       products: [
         { id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 },
@@ -31,13 +28,6 @@ class App extends Component {
     }
   }
 
-  // totalCalc = (event) => {
-  //   event.preventDefault()
-  //   this.setState({
-  //     total: 0
-  //   })
-  // }
-
   quantityListener = (event) => {
     event.preventDefault()
     this.setState({
@@ -53,25 +43,24 @@ class App extends Component {
   }
 
   addItem = (event) => {
-    // console.log(this.state)
     event.preventDefault()
     let result = this.state.products.filter(x => x.name === this.state.name)
-    console.log("e", event.target.value)
-    console.log("result", result)
     let newItem = {
       product: {
         id: this.state.cartList.length + 1,
         name: this.state.name,
-        price: +result[0].priceInCents
+        price: +result[0].priceInCents,
+        subtotal: this.state.price * this.state.quantity
       },
       quantity: this.state.quantity
     }
     this.setState({
-      cartList: [...this.state.cartList, newItem]
+      cartList: [...this.state.cartList, newItem],
+      total: this.state.total + newItem.subtotal
     })
   }
-  
   render() {
+    console.log(this.state.total)
     return (
       <div>
         <CartHeader />
@@ -83,6 +72,7 @@ class App extends Component {
           quantityListener={this.quantityListener}
           productListener={this.productListener}
           addItem={this.addItem}
+          totalCalc={this.state.total}
         />
         <CartFooter copyright={2018}/>
       </div>

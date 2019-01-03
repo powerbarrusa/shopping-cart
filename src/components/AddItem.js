@@ -5,7 +5,8 @@ const AddItem = (props) => {
   return (
     <div className="container">
       <form>
-        <div id="total">Total: 0</div>
+        <div id="total">Total: {props.totalCalc}</div>
+        {console.log(props.totalCalc)}
         <div className="collection-item">
           Quantity
           <input onChange={props.quantityListener} className="form-control" placeholder="Quantity" type="number"></input>
