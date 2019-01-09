@@ -54,13 +54,17 @@ class App extends Component {
       },
       quantity: this.state.quantity
     }
+    let prices = this.state.cartList.map(item => item.product.price)
+    let total = prices.reduce((acc, cur) => {
+      return acc + cur
+    }, 0)
+    total += newItem.product.price
     this.setState({
       cartList: [...this.state.cartList, newItem],
-      total: this.state.total + newItem.subtotal
+      total: [`$${total.toFixed(2) / 100}`]
     })
   }
   render() {
-    console.log(this.state.total)
     return (
       <div>
         <CartHeader />
