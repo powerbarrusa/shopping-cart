@@ -58,7 +58,7 @@ class App extends Component {
     let total = prices.reduce((acc, cur) => {
       return acc + cur
     }, 0)
-    total += newItem.product.price
+    total += newItem.product.price * newItem.quantity
     this.setState({
       cartList: [...this.state.cartList, newItem],
       total: [`$${total.toFixed(2) / 100}`]
