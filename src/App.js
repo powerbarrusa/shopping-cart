@@ -44,26 +44,30 @@ class App extends Component {
 
   addItem = (event) => {
     event.preventDefault()
-    let result = this.state.products.filter(x => x.name === this.state.name)
-    let newItem = {
-      product: {
-        id: this.state.cartList.length + 1,
-        name: this.state.name,
-        price: +result[0].priceInCents,
-        subtotal: this.state.price * this.state.quantity
-      },
-      quantity: this.state.quantity
+    if (this.state.quantity !== 0 && this.state.name !== ""){
+      let result = this.state.products.filter(x => x.name === this.state.name)
+
+      let newItem = {
+        product: {
+          id: this.state.cartList.length + 1,
+          name: this.state.name,
+          price: +result[0].priceInCents,
+          subtotal: +result[0].priceInCents * this.state.quantity
+        },
+        quantity: this.state.quantity
+      }
+      let prices = this.state.cartList.map(item => item.product.price)
+      let total = prices.reduce((acc, cur) => {
+        return acc + cur
+      }, 0)
+      total += newItem.product.price * newItem.quantity
+      this.setState({
+        cartList: [...this.state.cartList, newItem],
+        total: [`$${total.toFixed(2) / 100}`]
+      })
     }
-    let prices = this.state.cartList.map(item => item.product.price)
-    let total = prices.reduce((acc, cur) => {
-      return acc + cur
-    }, 0)
-    total += newItem.product.price * newItem.quantity
-    this.setState({
-      cartList: [...this.state.cartList, newItem],
-      total: [`$${total.toFixed(2) / 100}`]
-    })
   }
+
   render() {
     return (
       <div>
